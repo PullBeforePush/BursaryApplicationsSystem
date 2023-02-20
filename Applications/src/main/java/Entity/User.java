@@ -20,4 +20,5 @@ public class User {
       private Long user_id;
       private String user_name;
       private String password;
+      private int user_age;
 }
