@@ -1,6 +1,6 @@
-package Entity;
+package com.Bursary.Applications.Entity;
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
