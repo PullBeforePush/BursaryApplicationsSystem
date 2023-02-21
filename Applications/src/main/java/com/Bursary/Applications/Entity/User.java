@@ -1,4 +1,4 @@
-package Entity;
+package com.Bursary.Applications.Entity;
 
 import com.fasterxml.jackson.annotation.JsonTypeId;
 import jakarta.persistence.Entity;
