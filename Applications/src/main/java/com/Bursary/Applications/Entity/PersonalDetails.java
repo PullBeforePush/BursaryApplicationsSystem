@@ -1,6 +1,6 @@
-package Entity;
+package com.Bursary.Applications.Entity;
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,6 +10,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PersonalDetails {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long personal_id;
     private Long identification;
     private String initials;
@@ -22,4 +24,7 @@ public class PersonalDetails {
     private String phone_number;
     private String home_telephone;
     private String email_address;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+    private User user;
 }
