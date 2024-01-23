@@ -1,24 +1,29 @@
 package com.Bursary.Applications.Entity;
 
-import com.fasterxml.jackson.annotation.JsonTypeId;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
+
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
+
+import javax.persistence.*;
+import java.util.Set;
 
 @Data
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
-public class User {
+@Table(name = "users", uniqueConstraints = {
+        @UniqueConstraint(columnNames = "Username"),
+        @UniqueConstraint(columnNames = "email")
+})
+public class User{
       @Id
       @GeneratedValue(strategy = GenerationType.IDENTITY)
-      private Long user_id;
-      private String user_name;
+      private long id;
+      private String name;
+      private String username;
+      private String email;
       private String password;
-      private int user_age;
+
+      @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+      @JoinTable(name = "user_roles",
+      joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "Id"),
+      inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "Id"))
+      private Set<Role> roles;
 }
